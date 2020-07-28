@@ -1,0 +1,9 @@
+<ion-toolbar><ion-searchbar animated (ionInput)="searchBooks()" (ionChange)="updateSearchParams()"></ion-searchbar></ion-toolbar>
+<ion-content >
+  
+  <app-bookVIew *ngFor="let book of books" [book]=book></app-bookVIew>
+  <ion-infinite-scroll threshold="5px" (ionInfinite)="loadBooks($event)">
+    <ion-infinite-scroll-content loading-spinner="bubbles" >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

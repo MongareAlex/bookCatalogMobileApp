@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recipe App </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list no-padding>
+    <ion-item *ngFor= "let recipe of recipes" [routerLink]="['/recipes',recipe.id]">
+    <ion-avatar slot="start">
+      <ion-img [src]=recipe?.imageUrl></ion-img>
+    </ion-avatar>
+    <ion-label><strong>
+      {{recipe.title}}
+    </strong>
+    </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-button fill="outline" (click)="reloadRecipes()">Refresh</ion-button>
+  </ion-item>
+  
+</ion-content>
+    

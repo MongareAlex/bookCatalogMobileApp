@@ -1,0 +1,24 @@
+<ion-card>
+  
+  <ion-card-content>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-img [src]=imgUrl></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{category.CategoyName}}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-card-content>
+  <ion-card-content>
+   Synopsis : This is content, without any paragraph or header tags,
+   within an ion-card-content element.
+  </ion-card-content>
+  <ion-card-content>
+    <ion-item lines="none">
+      <ion-button color="medium" fill="outline" slot="start" [routerLink]="[category.CategoryId]">View </ion-button>
+      <ion-button fill="outline" slot="end">View</ion-button>
+    </ion-item>
+  </ion-card-content>
+ 
+</ion-card>

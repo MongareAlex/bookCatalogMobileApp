@@ -1,0 +1,9 @@
+<ion-toolbar><ion-searchbar animated (ionInput)="searchAuthors()" (ionChange)="updateSearchParams()"></ion-searchbar></ion-toolbar>
+<ion-content >
+  
+  <app-authorView *ngFor="let author of authors" [author]="author"> </app-authorView>
+  <ion-infinite-scroll threshold="5px" (ionInfinite)="loadAuthors($event)">
+    <ion-infinite-scroll-content loading-spinner="bubbles" >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

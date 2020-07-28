@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" required formControlName="Email"></ion-input>
+    </ion-item>
+
+    <ion-row *ngIf="!registerForm.get('Email').valid && registerForm.get('Email').touched">
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-text color="danger">Email is invalid</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-item lines="full">
+      <ion-label position="floating">User name</ion-label>
+      <ion-input type="text" required formControlName="UserName"></ion-input>
+    </ion-item>
+
+
+    <ion-row *ngIf="!registerForm.get('UserName').valid && registerForm.get('UserName').touched">
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-text color="danger">username is invalid</ion-text>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-item lines="full">
+      <ion-label position="floating">Phone Number</ion-label>
+      <ion-input type="text" required formControlName="PhoneNumber"></ion-input>
+    </ion-item>
+
+    <ion-row *ngIf="!registerForm.get('PhoneNumber').valid && registerForm.get('PhoneNumber').touched">
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-text color="danger">Phone number invalid </ion-text>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" required formControlName="Password"></ion-input>
+    </ion-item>
+
+    <ion-row *ngIf="!registerForm.get('Password').valid && registerForm.get('Password').touched">
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-text color="danger">password does not meet requirements</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Confirm Password</ion-label>
+      <ion-input type="password" required formControlName="cnfmPwd"></ion-input>
+    </ion-item>
+
+    <ion-row *ngIf="registerForm.get('cnfmPwd').hasError('required') && registerForm.get('cnfmPwd').touched">
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-text color="danger">password does not meet requirements</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="registerForm.get('cnfmPwd').hasError('mismatch') && registerForm.get('cnfmPwd').touched">
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-text color="danger">passwords do not match</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-sm="3" offset-sm="3">
+        <app-image-picker
+          (imagePick)="onImagePicked($event)"
+        ></app-image-picker>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button *ngIf="registerForm.valid"  type="submit" color="success" expand="block">Sign Up</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

@@ -1,0 +1,9 @@
+<ion-toolbar><ion-searchbar animated (ionInput)="searchCategories()" (ionChange)="updateSearchParams()"></ion-searchbar></ion-toolbar>
+<ion-content >
+  
+  <app-categoryView *ngFor="let category of categories" [category]="category"></app-categoryView>
+  <ion-infinite-scroll threshold="5px" (ionInfinite)="loadCategories($event)">
+    <ion-infinite-scroll-content loading-spinner="bubbles" >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

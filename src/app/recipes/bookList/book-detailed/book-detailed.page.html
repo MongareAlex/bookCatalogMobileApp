@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <ion-title>{{book.Title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- container for the book detail -->
+<ion-grid>
+  <!-- top row  -->
+<ion-row>
+  <!-- split container for the image -->
+<ion-col size="4">
+  <ion-row>
+    <ion-img width="200" height="200" src={{imageUrls[0]}}> </ion-img>
+  </ion-row>
+  <ion-row>
+    <ion-label (click)="viewGallery()"> 
+      <p>View Book Gallery</p> </ion-label>
+  </ion-row>
+</ion-col>
+<ion-col size="7">
+  <ion-list>
+    <ion-item>
+    <ion-label><p>{{book.Title }}</p></ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label> <p> <strong>Publish: </strong></p></ion-label>
+    <ion-label><p>{{book.DatePublished | date:'longDate'}}</p></ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label> <p><strong>ISBN:</strong></p></ion-label>
+    <ion-label><p>{{book.ISBN}}</p></ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label><p> <strong>Rating: </strong></p></ion-label>
+    <ion-badge color="warning" > 6</ion-badge>
+  </ion-item>
+  </ion-list>
+</ion-col>
+</ion-row>
+<!-- bottom row -->
+<ion-row>
+  <ion-list><ion-list-header>
+    <ion-label >
+      <strong>Authors</strong></ion-label>
+  </ion-list-header>
+  <ion-item *ngFor="let author of book.Authors">
+   <ion-label><p>{{author.FirstName}}</p></ion-label> 
+  </ion-item>
+</ion-list>
+  
+</ion-row>
+<ion-row>
+  <ion-list>
+    <ion-list-header>
+      <ion-label >
+        <strong>Categories</strong></ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let category of book.Categories">
+      <ion-label><p>{{category.CategoyName}}</p></ion-label> 
+    </ion-item>
+  </ion-list>
+  
+</ion-row>
+
+<ion-row>
+  <ion-list-header>
+    <ion-label >
+      <strong>Top Reviews</strong></ion-label>
+
+  </ion-list-header>
+  <ion-item button *ngFor="let review of book.ReviewsList" (click)="reviewClick()">
+    <ion-avatar slot="start">
+      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    </ion-avatar>
+    <ion-label>
+      <h2>{{review.Headline}}</h2>
+      <h3>{{review.Rating}}</h3>
+      <p>{{review.ReviewText}}</p>
+    </ion-label>
+    <ion-icon slot="end" name="chevron-forward"></ion-icon>
+  </ion-item>
+  <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+</ion-row>
+</ion-grid>
+</ion-content>

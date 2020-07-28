@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <ion-title>{{author.FirstName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+<ion-grid>
+ 
+<ion-row>
+ 
+<ion-col size="4">
+  <ion-row>
+    <ion-img width="200" height="200" src={{imageUrls[0]}}> </ion-img>
+  </ion-row>
+  <ion-row>
+    <ion-label (click)="viewGallery()"> 
+      <p>View Gallery</p> </ion-label>
+  </ion-row>
+</ion-col>
+<ion-col size="7">
+  <ion-list>
+    <ion-item>
+    <ion-label><p>{{author.FirstName }}</p></ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label> <p> <strong>Nationality: </strong></p></ion-label>
+    <ion-label><p>{{author.Country.CountryName }}</p></ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label> <p><strong>BIO:</strong></p></ion-label>
+    <ion-label><p>{{author.Bio}}</p></ion-label>
+  </ion-item>
+  <ion-item>
+  </ion-item>
+  </ion-list>
+</ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-list-header>
+    <ion-label >
+      <strong>Books Authored</strong></ion-label>
+
+  </ion-list-header>
+  <ion-item button *ngFor="let book of author.BooksList" (click)="bookClick()">
+    <ion-avatar slot="start">
+      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    </ion-avatar>
+    <ion-label>
+      <h2>{{book.Title}}</h2>
+      <h3>{{book.ISBN}}</h3>
+    </ion-label>
+    <ion-icon slot="end" name="chevron-forward"></ion-icon>
+  </ion-item>
+  <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+</ion-row>
+</ion-grid>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-card>
+  
+  <ion-card-content>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-img [src]=imgUrl></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{book.Title}}</h3>
+        <p>{{book.ISBN}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-card-content>
+  <ion-card-content>
+  </ion-card-content>
+  <ion-card-content>
+    <ion-item lines="none">
+      <ion-label>Rating</ion-label>
+      <ion-badge color="warning" slot="start">7</ion-badge>
+    </ion-item >
+    <ion-item lines="none">
+      <ion-button color="medium" fill="outline" slot="start" [routerLink]="[book.Id]">View Details</ion-button>
+      <ion-button fill="outline" slot="end">Add A Review</ion-button>
+    </ion-item>
+  </ion-card-content>
+ 
+</ion-card>
+
+
